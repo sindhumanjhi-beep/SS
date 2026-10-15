@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#f8e9ed">
+<title>Just For You ♡</title>
+<style>
+:root{--rose:#b86d83;--ink:#4b3039;--muted:#967983}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;color:var(--ink);background:radial-gradient(ellipse at 10% 0%,#fff 0,transparent 38%),linear-gradient(160deg,#fff8f8,#f8e9ed 60%,#f7eef0);font-family:Georgia,'Times New Roman',serif;min-height:100vh}
+button,input,textarea{font:inherit}button{cursor:pointer}
+.wrap{width:min(760px,100%);margin:auto;padding:22px 16px 30px}
+.topline{text-align:center;font:10px Arial,sans-serif;letter-spacing:3px;text-transform:uppercase;color:#a57987;margin:5px 0 18px}
+.card{background:#ffffffd9;border:1px solid #fff;border-radius:28px;padding:30px 24px;box-shadow:0 18px 55px #8d536012}
+.hero{text-align:center;position:relative;overflow:hidden;background:linear-gradient(155deg,#fffdfd,#fff1f4);padding:38px 20px 34px}
+.flower{font-size:24px;color:#cf8da0;letter-spacing:9px}
+h1{font-weight:normal;font-size:clamp(37px,8vw,64px);line-height:1.08;letter-spacing:-1.8px;margin:20px 0 13px;color:#754354}
+.subtitle{font:14px/1.9 Arial,sans-serif;color:#987681;max-width:440px;margin:0 auto}
+.name{display:inline-block;border-bottom:1px solid #e7c2cd;min-width:80px;padding:0 8px 4px;color:#a45b72}
+.btn{border-radius:999px;border:0;padding:14px 21px;font:12px Arial,sans-serif;letter-spacing:.4px;transition:transform .2s}
+.btn:active{transform:scale(.97)}.primary{background:#a95f77;color:white;box-shadow:0 8px 22px #a95f7726}.soft{background:#fff;color:#8c5366;border:1px solid #efd9e0}
+.hero .primary{margin-top:25px}.tiny{font:11px/1.7 Arial,sans-serif;color:#aa8b94}.section{margin-top:16px}
+.label{text-align:center;text-transform:uppercase;font:10px Arial,sans-serif;letter-spacing:3px;color:#bd8495}
+h2{text-align:center;font-weight:normal;font-size:clamp(24px,5vw,32px);margin:12px 0 16px;color:#754354}
+.player{text-align:center;max-width:500px;margin:auto}
+.vinyl{width:142px;height:142px;margin:24px auto 20px;border-radius:50%;display:grid;place-items:center;background:repeating-radial-gradient(circle,#53303d 0 4px,#684150 5px 8px);border:7px solid #d9a4b2;box-shadow:0 12px 28px #86506020;position:relative}
+.vinyl:after{content:"";position:absolute;inset:45%;border-radius:50%;background:#f6dce4;border:2px solid #dba4b4}.vinyl.playing{animation:spin 6s linear infinite}.vinyl .flower-center{position:relative;z-index:1;font-size:15px;color:#9a586e}
+.player-buttons{display:flex;justify-content:center;gap:10px;flex-wrap:wrap}
+.status{font:12px/1.7 Arial,sans-serif;color:#a17d89;min-height:20px;margin:13px 0}
+audio{display:block;width:100%;margin:15px 0}
+.rating-copy{font:13px/1.8 Arial,sans-serif;color:#987681;max-width:440px;margin:0 auto 18px;text-align:center}
+.stars{display:flex;justify-content:center;gap:7px;margin:18px 0}
+.star{background:transparent;border:0;color:#dec6ce;font-size:clamp(34px,8vw,43px);padding:2px;line-height:1;transition:transform .15s,color .15s}
+.star.selected{color:#d69a42}.star:focus-visible{outline:2px solid #a95f77;outline-offset:4px;border-radius:8px}
+.field-label{display:block;font:12px Arial,sans-serif;color:#896674;margin:15px 0 7px;text-align:left}
+textarea,input[type=text]{width:100%;border:1px solid #ecd4dc;border-radius:14px;background:#fffafb;padding:13px 14px;color:var(--ink);font:14px/1.6 Arial,sans-serif;outline:none}
+textarea{resize:vertical;min-height:105px}textarea:focus,input[type=text]:focus{border-color:#c17b91;box-shadow:0 0 0 3px #c17b911c}
+.review-result{display:none;margin-top:18px;padding:20px;border:1px solid #efd5de;border-radius:18px;background:linear-gradient(145deg,#fffafb,#fff0f4);text-align:center}
+.review-result h3{font-weight:normal;font-size:22px;margin:4px 0 10px;color:#754354}.review-stars{font-size:27px;color:#d69a42;letter-spacing:3px}.review-message{font:14px/1.8 Arial,sans-serif;white-space:pre-wrap;overflow-wrap:anywhere}
+.lyrics-note{text-align:center;font:12px/1.8 Arial,sans-serif;color:#a17d89;margin:15px 0 0}
+.final{background:linear-gradient(150deg,#fff9fa,#f9e6ec);text-align:center;padding:34px 20px}
+.final p{font-size:clamp(20px,4vw,28px);line-height:1.8;margin:18px 0;color:#754354}.final em{font-style:normal;color:#b25f7b}
+.footer{text-align:center;padding:20px 8px 4px;font:10px Arial,sans-serif;letter-spacing:2px;color:#b0929b}
+.heart{display:inline-block;animation:beat 1.8s ease-in-out infinite;color:#b66b83}
+@keyframes spin{to{transform:rotate(360deg)}}@keyframes beat{0%,100%{transform:scale(1)}50%{transform:scale(1.12)}}
+@media(max-width:480px){.wrap{padding:12px}.card{padding:25px 18px;border-radius:22px}.hero{padding:32px 17px}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;scroll-behavior:auto!important;transition:none!important}}
+</style>
+</head>
+<body>
+<main class="wrap">
+  <div class="topline">a little page made with love</div>
+  <section class="card hero">
+    <div class="flower">✿ ♡ ✿</div>
+    <div class="tiny" style="letter-spacing:3px;text-transform:uppercase;margin-top:15px">For someone special</div>
+    <h1>Hey, my<br><span class="name">favorite person</span> ♡</h1>
+    <p class="subtitle">I made a tiny little world for you.<br>Take a breath, get comfortable, and press play.</p>
+    <button class="btn primary" id="begin">A little surprise for you ♡</button>
+    <p class="tiny" style="margin-top:17px">made with a little extra love</p>
+  </section>
+
+  <section class="card section" id="song">
+    <div class="label">A song made for you</div>
+    <h2>Tumse Hi Ghar Hai Mera</h2>
+    <p class="tiny" style="text-align:center">close your eyes and listen ♡</p>
+    <div class="player">
+      <div class="vinyl" id="vinyl"><span class="flower-center">♡</span></div>
+      <div class="player-buttons">
+        <button class="btn primary" id="play">▶ &nbsp; Play our song</button>
+        <button class="btn soft" id="stop">■ &nbsp; Stop</button>
+      </div>
+      <p class="status" id="status" aria-live="polite">A little song, just for you. ♡</p>
+      <audio id="audio" controls preload="metadata">
+        <source src="तुमसे_ही_घर_है_मेरा.mp3" type="audio/mpeg">
+        Your browser does not support audio playback.
+      </audio>
+      <p class="tiny">If the song doesn't play, keep the MP3 file in the same folder as this website.</p>
+    </div>
+  </section>
+
+  <section class="card section rating" id="rating">
+    <div class="flower">♡ ✿ ♡</div>
+    <div class="label">Your little review</div>
+    <h2>Did you like the song? ♡</h2>
+    <p class="rating-copy">I made this for you, so your honest opinion means a lot. Give it a star rating and write anything you want to tell me. 💗</p>
+    <div class="stars" role="group" aria-label="Rate the song from one to five stars">
+      <button class="star" type="button" data-rating="1" aria-label="1 star" aria-pressed="false">★</button>
+      <button class="star" type="button" data-rating="2" aria-label="2 stars" aria-pressed="false">★</button>
+      <button class="star" type="button" data-rating="3" aria-label="3 stars" aria-pressed="false">★</button>
+      <button class="star" type="button" data-rating="4" aria-label="4 stars" aria-pressed="false">★</button>
+      <button class="star" type="button" data-rating="5" aria-label="5 stars" aria-pressed="false">★</button>
+    </div>
+    <p class="status" id="rateStatus" aria-live="polite">Tap the stars to rate the song. ♡</p>
+    <label class="field-label" for="herMessage">Write me a little message (anything you feel) 💌</label>
+    <textarea id="herMessage" placeholder="Your song made me feel..."></textarea>
+    <label class="field-label" for="herNameInput">Your name (optional)</label>
+    <input type="text" id="herNameInput" maxlength="50" placeholder="Your name">
+    <div style="text-align:center;margin-top:17px">
+      <button class="btn primary" type="button" id="makeReview">Make my little review ♡</button>
+    </div>
+    <div class="review-result" id="reviewResult" aria-live="polite">
+      <div class="flower">♡</div>
+      <h3 id="reviewHeading">A little note for you</h3>
+      <div class="review-stars" id="reviewStars">★★★★★</div>
+      <p class="review-message" id="reviewMessage"></p>
+      <p class="tiny" style="margin-bottom:0">A little review, from the heart ♡</p>
+    </div>
+    <p class="tiny" style="text-align:center;margin-top:15px">When your review appears, take a screenshot and send it to me. ♡</p>
+  </section>
+
+  <section class="card final section">
+    <div class="flower">♡ ✿ ♡</div>
+    <p>“Tumhari muskurahat meri duniya ka sabse pyaara hissa hai.<br><em>Bas hamesha aise hi khush rehna. ♡</em>”</p>
+    <div class="tiny">always cheering for your smile</div>
+    <div style="font-size:22px;margin-top:18px" class="heart">♥</div>
+  </section>
+  <div class="footer">MADE FOR YOU, WITH LOVE ♡</div>
+</main>
+<script>
+(() => {
+  const audio = document.getElementById('audio');
+  const status = document.getElementById('status');
+  const vinyl = document.getElementById('vinyl');
+  let selectedRating = 0;
+  document.getElementById('begin').addEventListener('click', () => {
+    document.getElementById('song').scrollIntoView({
+      behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth',
+      block: 'center'
+    });
+  });
+  document.getElementById('play').addEventListener('click', async () => {
+    try {
+      await audio.play();
+      status.textContent = 'Playing your little love song… ♡';
+      vinyl.classList.add('playing');
+    } catch (e) {
+      status.textContent = 'Song file nahi mil rahi. MP3 ko website ke same folder mein rakho. ♡';
+    }
+  });
+  document.getElementById('stop').addEventListener('click', () => {
+    audio.pause();
+    audio.currentTime = 0;
+    vinyl.classList.remove('playing');
+    status.textContent = 'Song stopped. Play again whenever you want. ♡';
+  });
+  audio.addEventListener('play', () => {
+    vinyl.classList.add('playing');
+    status.textContent = 'Playing your little love song… ♡';
+  });
+  audio.addEventListener('pause', () => vinyl.classList.remove('playing'));
+  audio.addEventListener('error', () => {
+    status.textContent = 'MP3 file nahi mil rahi. “तुमसे_ही_घर_है_मेरा.mp3” ko HTML file ke same folder mein rakho. ♡';
+  });
+  audio.addEventListener('ended', () => {
+    vinyl.classList.remove('playing');
+    status.textContent = 'I hope this song made you smile. ♡';
+  });
+
+  const stars = [...document.querySelectorAll('.star')];
+  const rateStatus = document.getElementById('rateStatus');
+  function updateStars(value) {
+    selectedRating = value;
+    stars.forEach((star, index) => {
+      const active = index < value;
+      star.classList.toggle('selected', active);
+      star.setAttribute('aria-pressed', String(index + 1 === value));
+    });
+    rateStatus.textContent = `${value} out of 5 stars selected ♡`;
+  }
+  stars.forEach(star => star.addEventListener('click', () => updateStars(Number(star.dataset.rating))));
+  document.getElementById('makeReview').addEventListener('click', () => {
+    const message = document.getElementById('herMessage').value.trim();
+    const name = document.getElementById('herNameInput').value.trim();
+    if (!selectedRating) {
+      rateStatus.textContent = 'Pehle song ko stars do, phir apna message likho. ♡';
+      document.querySelector('.stars').scrollIntoView({behavior:'smooth',block:'center'});
+      return;
+    }
+    if (!message) {
+      rateStatus.textContent = 'Apna chhota sa message bhi likh do. ♡';
+      document.getElementById('herMessage').focus();
+      return;
+    }
+    document.getElementById('reviewHeading').textContent = name ? `A little note from ${name}` : 'A little note for you';
+    document.getElementById('reviewStars').textContent = '★'.repeat(selectedRating) + '☆'.repeat(5-selectedRating);
+    document.getElementById('reviewMessage').textContent = message;
+    const result = document.getElementById('reviewResult');
+    result.style.display = 'block';
+    result.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'center'});
+  });
+})();
+</script>
+</body>
+</html>
